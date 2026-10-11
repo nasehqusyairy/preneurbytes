@@ -1,0 +1,24 @@
+import type { Route } from "./+types/search";
+import { Form, Link } from "react-router";
+import { RiArrowRightLine, RiSearchLine, RiTimeLine } from "@remixicon/react";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
+import { Separator } from "~/components/ui/separator";
+import { AdSlot, SiteHeader } from "~/components/site-header";
+
+export function meta({}: Route.MetaArgs) { return [{ title: "Pencarian berita — Pasir" }, { name: "description", content: "Cari berita, topik, dan tokoh di Pasir." }]; }
+
+const results = [
+  { category: "NASIONAL", title: "Rocky Gerung: Saya di Kalangan Istana Sekarang, Akan Jadi Sasaran", time: "6 Okt 2026 · 18:50 WIB", image: "photo-1529107386315-e1a2ed48a620", description: "Anggota Dewan Pertimbangan Presiden (Wantimpres) Rocky Gerung berkelakar soal tugas pertama Kepala Bakom Syahganda Nainggolan." },
+  { category: "NASIONAL", title: "Rocky Gerung bicara soal dinamika politik dan ruang kritik publik", time: "6 Okt 2026 · 16:20 WIB", image: "photo-1529107386315-e1a2ed48a620", description: "Pernyataan Rocky Gerung kembali mengundang perhatian di tengah dinamika politik nasional." },
+  { category: "ANALISIS", title: "Membaca ulang posisi kritik di lingkar kekuasaan", time: "5 Okt 2026 · 09:15 WIB", image: "photo-1516321318423-f06f85e504b3", description: "Sejumlah pengamat menilai ruang kritik penting dijaga dalam proses pengambilan kebijakan." },
+];
+
+export default function Search({ loaderData }: Route.ComponentProps) {
+  const query = loaderData?.query || "rocky gerung";
+  return <main className="min-h-screen bg-background text-foreground"><SiteHeader /><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="py-5"><AdSlot /></div><div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]"><section><p className="mb-2 text-xs font-bold tracking-widest text-muted-foreground">HASIL PENCARIAN</p><h1 className="mb-5 font-heading text-3xl font-bold sm:text-4xl">Cari berita</h1><Form method="get" action="/search" className="flex gap-2"><div className="relative flex-1"><RiSearchLine className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" /><Input className="h-11 pl-10" name="query" defaultValue={query} placeholder="Cari berita, topik, atau tokoh" /></div><Button type="submit" size="lg">Cari</Button></Form><div className="mt-7 flex flex-wrap items-center justify-between gap-3"><p className="m-0 text-sm text-muted-foreground">Hasil untuk <strong className="text-foreground">“{query}”</strong><span> · 1–3 dari 24 berita</span></p><Button variant="outline" size="sm">Urutkan: Terbaru</Button></div><Separator className="my-4" />{results.map((story, index) => <article key={story.title} className={`grid gap-4 border-b py-5 sm:grid-cols-[190px_1fr] ${index === 0 ? "border-t-2 border-t-highlight" : ""}`}><Link className="block aspect-[16/10] overflow-hidden bg-muted" to="/nasional/rocky-gerung"><img className="size-full object-cover" src={`https://images.unsplash.com/${story.image}?auto=format&fit=crop&w=650&q=80`} alt="" /></Link><div><div className="flex items-center gap-2"><Badge variant={index === 0 ? "default" : "secondary"}>{story.category}</Badge><span className="flex items-center gap-1 text-xs text-muted-foreground"><RiTimeLine className="size-3.5" />{story.time}</span></div><h2 className="mt-2 font-heading text-xl font-bold leading-snug"><Link className="hover:text-primary" to="/nasional/rocky-gerung">{story.title}</Link></h2><p className="mt-2 text-sm leading-6 text-muted-foreground">{story.description}</p><Link className="mt-2 inline-flex items-center gap-2 text-xs font-bold text-primary" to="/nasional/rocky-gerung">BACA BERITA <RiArrowRightLine className="size-4" /></Link></div></article>)}<div className="flex justify-center py-7"><Button variant="outline">Muat berita lainnya</Button></div></section><aside className="space-y-5"><AdSlot variant="rectangle" /><Card className="rounded-none shadow-none"><CardContent className="p-5"><p className="mb-2 text-xs font-bold tracking-widest">TOPIK POPULER</p>{["Rocky Gerung", "Pemerintahan", "Politik", "Wantimpres"].map((topic) => <Link key={topic} className="flex items-center justify-between border-t py-3 text-sm hover:text-primary" to={`/search?query=${encodeURIComponent(topic)}`}>{topic}<RiArrowRightLine className="size-4" /></Link>)}</CardContent></Card><AdSlot variant="rectangle" /></aside></div></div><footer className="mt-10 bg-foreground text-background"><div className="mx-auto max-w-7xl px-4 py-7 text-xs sm:px-6">Pasir · Berani Bicara Fakta</div></footer></main>;
+}
+
+export function loader({ request }: Route.LoaderArgs) { return { query: new URL(request.url).searchParams.get("query")?.trim() || "" }; }

@@ -1,0 +1,22 @@
+.DS_Store
+
+# Dependencies
+**/node_modules/
+
+# Build output and caches
+**/build/
+**/dist/
+**/coverage/
+**/.react-router/
+**/.cache/
+**/.vite/
+**/.turbo/
+*.tsbuildinfo
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
