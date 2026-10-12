@@ -10,9 +10,12 @@ importers:
 
   apps/backoffice:
     dependencies:
-      '@preneurbytes/services':
+      '@preneurbytes/models':
         specifier: workspace:*
-        version: link:../../packages/services
+        version: link:../../packages/models
+      '@preneurbytes/server':
+        specifier: workspace:*
+        version: link:../../packages/server
       '@react-router/node':
         specifier: ^8.4.0
         version: 8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)
@@ -47,9 +50,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.7
         version: 19.3.0(@types/react@19.3.0)
-      supabase:
-        specifier: ^2.118.0
-        version: 2.120.0
       tailwindcss:
         specifier: ^4.2.2
         version: 4.3.3
@@ -62,9 +62,12 @@ importers:
 
   apps/landing-page:
     dependencies:
-      '@preneurbytes/services':
+      '@preneurbytes/models':
         specifier: workspace:*
-        version: link:../../packages/services
+        version: link:../../packages/models
+      '@preneurbytes/server':
+        specifier: workspace:*
+        version: link:../../packages/server
       '@react-router/node':
         specifier: ^8.4.0
         version: 8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)
@@ -120,9 +123,12 @@ importers:
       '@fontsource-variable/noto-serif':
         specifier: ^5.3.0
         version: 5.3.0
-      '@preneurbytes/services':
+      '@preneurbytes/models':
         specifier: workspace:*
-        version: link:../../packages/services
+        version: link:../../packages/models
+      '@preneurbytes/server':
+        specifier: workspace:*
+        version: link:../../packages/server
       '@react-router/node':
         specifier: ^8.4.0
         version: 8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)
@@ -182,8 +188,20 @@ importers:
         specifier: ^8.0.3
         version: 8.3.4(@types/node@22.20.5)(jiti@2.7.0)
 
-  packages/services:
+  packages/models:
+    devDependencies:
+      supabase:
+        specifier: ^2.120.0
+        version: 2.120.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/server:
     dependencies:
+      '@preneurbytes/models':
+        specifier: workspace:*
+        version: link:../models
       '@supabase/ssr':
         specifier: ^0.12.7
         version: 0.12.7(@supabase/supabase-js@2.117.3)

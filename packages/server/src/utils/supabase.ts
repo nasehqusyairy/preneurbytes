@@ -3,13 +3,14 @@ import {
     parseCookieHeader,
     serializeCookieHeader,
 } from "@supabase/ssr";
+import type { Database } from "@preneurbytes/models";
 
 export function createClient(request: Request) {
     const headers = new Headers();
 
-    const supabase = createServerClient(
-        process.env.VITE_SUPABASE_URL!,
-        process.env.VITE_SUPABASE_PUBLISHABLE_KEY!,
+    const supabase = createServerClient<Database>(
+        process.env.SUPABASE_URL!,
+        process.env.SUPABASE_PUBLISHABLE_KEY!,
         {
             cookies: {
                 getAll() {

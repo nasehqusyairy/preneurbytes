@@ -1,0 +1,35 @@
+{
+  "name": "@preneurbytes/models",
+  "version": "1.0.0",
+  "description": "Shared generated database types for Preneur Bytes",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./database": {
+      "types": "./dist/database.types.d.ts",
+      "import": "./dist/database.types.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "generate:models": "node scripts/generate-models.mjs",
+    "generate:types": "supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" --schema public > src/database.types.ts && pnpm generate:models"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "supabase": "^2.120.0",
+    "typescript": "^5.9.3"
+  }
+}

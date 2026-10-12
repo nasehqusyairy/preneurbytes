@@ -2,12 +2,12 @@ import { index, route, type RouteConfig } from "@react-router/dev/routes";
 
 export default [
   index("routes/home.tsx"),
-  route("search", "routes/search.tsx"),
+  // route("search", "routes/search.tsx"),
 
-  route('articles/', 'routes/articles.tsx'),
-  route('articles/:slug', 'routes/article-details.tsx'),
+  // route('articles/', 'routes/articles.tsx'),
+  // route('articles/:slug', 'routes/article-details.tsx'),
 
-  route('tags/', 'routes/tags.tsx'),
+  // route('tags/', 'routes/tags.tsx'),
 
   // placeholder
   route(
