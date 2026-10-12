@@ -60,6 +60,55 @@ importers:
         specifier: ^8.0.3
         version: 8.3.4(@types/node@22.20.5)(jiti@2.7.0)
 
+  apps/landing-page:
+    dependencies:
+      '@preneurbytes/services':
+        specifier: workspace:*
+        version: link:../../packages/services
+      '@react-router/node':
+        specifier: ^8.4.0
+        version: 8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)
+      '@react-router/serve':
+        specifier: ^8.4.0
+        version: 8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)
+      isbot:
+        specifier: ^5.1.36
+        version: 5.2.2
+      react:
+        specifier: ^19.2.8
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.2.8
+        version: 19.3.0(react@19.3.0)
+      react-router:
+        specifier: ^8.4.0
+        version: 8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+    devDependencies:
+      '@react-router/dev':
+        specifier: ^8.4.0
+        version: 8.4.0(@react-router/serve@8.4.0(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3))(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(typescript@5.9.3)(vite@8.3.4(@types/node@22.20.5)(jiti@2.7.0))
+      '@tailwindcss/vite':
+        specifier: ^4.2.2
+        version: 4.3.3(vite@8.3.4(@types/node@22.20.5)(jiti@2.7.0))
+      '@types/node':
+        specifier: ^22
+        version: 22.20.5
+      '@types/react':
+        specifier: ^19.2.18
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.7
+        version: 19.3.0(@types/react@19.3.0)
+      tailwindcss:
+        specifier: ^4.2.2
+        version: 4.3.3
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^8.0.3
+        version: 8.3.4(@types/node@22.20.5)(jiti@2.7.0)
+
   apps/pasir-articles:
     dependencies:
       '@base-ui/react':
